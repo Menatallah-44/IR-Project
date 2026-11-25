@@ -1,0 +1,216 @@
+
+RAW TF
+analysis     0       0       1       0       0       0       0       0       0       0       
+analytics    0       0       0       0       0       0       0       1       0       0       
+and          0       0       0       0       1       0       0       0       0       0       
+applications 0       0       0       0       0       0       0       0       0       1       
+artificial   0       0       0       1       0       0       1       0       0       0       
+cloud        0       0       0       0       0       1       0       0       2       0       
+computing    0       0       0       0       0       1       0       1       1       0       
+data         0       1       1       0       1       1       0       2       1       1       
+explores     0       0       0       0       0       0       0       1       0       0       
+improve      0       0       0       0       0       0       0       0       0       1       
+improves     0       1       0       0       0       0       0       0       0       0       
+intelligence 0       0       0       1       0       0       1       0       0       0       
+learning     1       1       0       0       2       0       1       0       0       2       
+machine      1       1       0       0       3       0       1       0       0       2       
+models       0       0       0       0       1       0       1       0       0       1       
+powers       0       0       0       1       0       0       0       0       0       0       
+processing   0       1       0       0       0       0       0       0       0       0       
+research     0       0       0       0       0       0       0       1       0       1       
+science      0       0       1       0       1       0       0       1       0       0       
+smart        0       0       0       1       0       0       0       0       0       0       
+storage      0       0       0       0       0       1       0       0       1       0       
+support      0       0       1       0       1       0       0       0       0       0       
+supports     0       0       0       0       0       1       0       0       1       0       
+systems      0       0       0       1       0       0       0       1       1       1       
+through      0       0       0       0       0       0       0       1       0       0       
+tools        0       0       1       0       0       0       0       0       0       0       
+uses         0       0       0       0       0       0       1       0       0       0       
+
+WEIGHTED TF
+analysis     0       0       1.0     0       0       0       0       0       0       0       
+analytics    0       0       0       0       0       0       0       1.0     0       0       
+and          0       0       0       0       1.0     0       0       0       0       0       
+applications 0       0       0       0       0       0       0       0       0       1.0     
+artificial   0       0       0       1.0     0       0       1.0     0       0       0       
+cloud        0       0       0       0       0       1.0     0       0       1.301   0       
+computing    0       0       0       0       0       1.0     0       1.0     1.0     0       
+data         0       1.0     1.0     0       1.0     1.0     0       1.301   1.0     1.0     
+explores     0       0       0       0       0       0       0       1.0     0       0       
+improve      0       0       0       0       0       0       0       0       0       1.0     
+improves     0       1.0     0       0       0       0       0       0       0       0       
+intelligence 0       0       0       1.0     0       0       1.0     0       0       0       
+learning     1.0     1.0     0       0       1.301   0       1.0     0       0       1.301   
+machine      1.0     1.0     0       0       1.4771  0       1.0     0       0       1.301   
+models       0       0       0       0       1.0     0       1.0     0       0       1.0     
+powers       0       0       0       1.0     0       0       0       0       0       0       
+processing   0       1.0     0       0       0       0       0       0       0       0       
+research     0       0       0       0       0       0       0       1.0     0       1.0     
+science      0       0       1.0     0       1.0     0       0       1.0     0       0       
+smart        0       0       0       1.0     0       0       0       0       0       0       
+storage      0       0       0       0       0       1.0     0       0       1.0     0       
+support      0       0       1.0     0       1.0     0       0       0       0       0       
+supports     0       0       0       0       0       1.0     0       0       1.0     0       
+systems      0       0       0       1.0     0       0       0       1.0     1.0     1.0     
+through      0       0       0       0       0       0       0       1.0     0       0       
+tools        0       0       1.0     0       0       0       0       0       0       0       
+uses         0       0       0       0       0       0       1.0     0       0       0       
+
+TF-IDF
+analysis     0.0     0.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+analytics    0.0     0.0     0.0     0.0     0.0     0.0     0.0     1.0     0.0     0.0     
+and          0.0     0.0     0.0     0.0     1.0     0.0     0.0     0.0     0.0     0.0     
+applications 0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     1.0     
+artificial   0.0     0.0     0.0     0.699   0.0     0.0     0.699   0.0     0.0     0.0     
+cloud        0.0     0.0     0.0     0.0     0.0     0.699   0.0     0.0     0.9094  0.0     
+computing    0.0     0.0     0.0     0.0     0.0     0.5229  0.0     0.5229  0.5229  0.0     
+data         0.0     0.1549  0.1549  0.0     0.1549  0.1549  0.0     0.2015  0.1549  0.1549  
+explores     0.0     0.0     0.0     0.0     0.0     0.0     0.0     1.0     0.0     0.0     
+improve      0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     1.0     
+improves     0.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+intelligence 0.0     0.0     0.0     0.699   0.0     0.0     0.699   0.0     0.0     0.0     
+learning     0.301   0.301   0.0     0.0     0.3916  0.0     0.301   0.0     0.0     0.3916  
+machine      0.301   0.301   0.0     0.0     0.4447  0.0     0.301   0.0     0.0     0.3916  
+models       0.0     0.0     0.0     0.0     0.5229  0.0     0.5229  0.0     0.0     0.5229  
+powers       0.0     0.0     0.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     
+processing   0.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+research     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.699   0.0     0.699   
+science      0.0     0.0     0.5229  0.0     0.5229  0.0     0.0     0.5229  0.0     0.0     
+smart        0.0     0.0     0.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     
+storage      0.0     0.0     0.0     0.0     0.0     0.699   0.0     0.0     0.699   0.0     
+support      0.0     0.0     0.699   0.0     0.699   0.0     0.0     0.0     0.0     0.0     
+supports     0.0     0.0     0.0     0.0     0.0     0.699   0.0     0.0     0.699   0.0     
+systems      0.0     0.0     0.0     0.3979  0.0     0.0     0.0     0.3979  0.3979  0.3979  
+through      0.0     0.0     0.0     0.0     0.0     0.0     0.0     1.0     0.0     0.0     
+tools        0.0     0.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+uses         0.0     0.0     0.0     0.0     0.0     0.0     1.0     0.0     0.0     0.0     
+
+NORMALIZED TF-IDF
+analysis     0.0     0.0     0.5991  0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+analytics    0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.486   0.0     0.0     
+and          0.0     0.0     0.0     0.0     0.6441  0.0     0.0     0.0     0.0     0.0     
+applications 0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.5546  
+artificial   0.0     0.0     0.0     0.3947  0.0     0.0     0.4482  0.0     0.0     0.0     
+cloud        0.0     0.0     0.0     0.0     0.0     0.5264  0.0     0.0     0.6049  0.0     
+computing    0.0     0.0     0.0     0.0     0.0     0.3938  0.0     0.2541  0.3478  0.0     
+data         0.0     0.1043  0.0928  0.0     0.0998  0.1167  0.0     0.0979  0.103   0.0859  
+explores     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.486   0.0     0.0     
+improve      0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.5546  
+improves     0.0     0.6734  0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+intelligence 0.0     0.0     0.0     0.3947  0.0     0.0     0.4482  0.0     0.0     0.0     
+learning     0.7071  0.2027  0.0     0.0     0.2523  0.0     0.193   0.0     0.0     0.2172  
+machine      0.7071  0.2027  0.0     0.0     0.2864  0.0     0.193   0.0     0.0     0.2172  
+models       0.0     0.0     0.0     0.0     0.3368  0.0     0.3353  0.0     0.0     0.29    
+powers       0.0     0.0     0.0     0.5647  0.0     0.0     0.0     0.0     0.0     0.0     
+processing   0.0     0.6734  0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+research     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.3397  0.0     0.3877  
+science      0.0     0.0     0.3133  0.0     0.3368  0.0     0.0     0.2541  0.0     0.0     
+smart        0.0     0.0     0.0     0.5647  0.0     0.0     0.0     0.0     0.0     0.0     
+storage      0.0     0.0     0.0     0.0     0.0     0.5264  0.0     0.0     0.465   0.0     
+support      0.0     0.0     0.4188  0.0     0.4502  0.0     0.0     0.0     0.0     0.0     
+supports     0.0     0.0     0.0     0.0     0.0     0.5264  0.0     0.0     0.465   0.0     
+systems      0.0     0.0     0.0     0.2247  0.0     0.0     0.0     0.1934  0.2647  0.2207  
+through      0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.486   0.0     0.0     
+tools        0.0     0.0     0.5991  0.0     0.0     0.0     0.0     0.0     0.0     0.0     
+uses         0.0     0.0     0.0     0.0     0.0     0.0     0.6413  0.0     0.0     0.0     
+
+DF and IDF
+analysis      1 1.0
+analytics     1 1.0
+and           1 1.0
+applications  1 1.0
+artificial    2 0.699
+cloud         2 0.699
+computing     3 0.5229
+data          7 0.1549
+explores      1 1.0
+improve       1 1.0
+improves      1 1.0
+intelligence  2 0.699
+learning      5 0.301
+machine       5 0.301
+models        3 0.5229
+powers        1 1.0
+processing    1 1.0
+research      2 0.699
+science       3 0.5229
+smart         1 1.0
+storage       2 0.699
+support       2 0.699
+supports      2 0.699
+systems       4 0.3979
+through       1 1.0
+tools         1 1.0
+uses          1 1.0
+
+DOCUMENT LENGTHS
+d1 0.4257
+d2 1.485
+d3 1.6691
+d4 1.7707
+d5 1.5526
+d6 1.3278
+d7 1.5594
+d8 2.0577
+d9 1.5033
+d10 1.8031
+
+PHRASE QUERY: "machine learning"
+Matched document | Starting positions | Token ranges
+d1                | 1                  | 1-2
+d2                | 1                  | 1-2
+d5                | 1, 9               | 1-2, 9-10
+d7                | 4                  | 4-5
+d10               | 1, 5               | 1-2, 5-6
+
+1. "machine learning"
+query length: 0.425721
+weight machine 0.7071
+weight learning 0.7071
+d1 1.0
+d2 0.2867
+d5 0.3809
+d7 0.273
+d10 0.3072
+rank: d1 > d5 > d10 > d2 > d7
+
+PHRASE QUERY: "data science"
+Matched document | Starting positions | Token ranges
+d3                | 1                  | 1-2
+d5                | 6                  | 6-7
+d8                | 1                  | 1-2
+
+2. "data science"
+query length: 0.545341
+weight data 0.284
+weight science 0.9588
+d3 0.3267
+d5 0.3513
+d8 0.2715
+rank: d5 > d3 > d8
+
+BOOLEAN AND: "machine learning" AND "data science"
+Matched documents: d5
+
+3. "machine learning" AND "data science"
+query length: 0.691834
+weight machine 0.4351
+weight learning 0.4351
+weight data 0.2239
+weight science 0.7558
+d5 0.5113
+rank: d5
+
+BOOLEAN AND NOT: "machine learning" AND NOT "data science"
+Matched documents: d1, d2, d7, d10
+
+4. "machine learning" AND NOT "data science"
+query length: 0.425721
+weight machine 0.7071
+weight learning 0.7071
+d1 1.0
+d2 0.2867
+d7 0.273
+d10 0.3072
+rank: d1 > d10 > d2 > d7
