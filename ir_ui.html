@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IR Project - Technology</title>
+<style>
+body { font-family: Arial; max-width: 900px; margin: 0 auto; padding: 12px; }
+h1 { font-size: 22px; }
+button { padding: 5px 10px; margin: 2px; cursor: pointer; }
+#q { width: 65%; padding: 6px; }
+.wrap { overflow-x: auto; margin-top: 8px; }
+table { border-collapse: collapse; font-size: 12px; }
+th, td { border: 1px solid gray; padding: 3px 7px; text-align: right; }
+th { background: #e8e8e8; }
+td:first-child, th:first-child { text-align: left; }
+.box { border: 1px solid gray; padding: 8px; margin-top: 10px; background: #eef6ee; }
+</style>
+</head>
+<body>
+<h1>Information Retrieval Project</h1>
+<p>Technology version - 10 documents - positional index, TF-IDF, phrase and boolean search</p>
+
+<div id="tabs"></div>
+<div id="view"></div>
+
+<h3>Search</h3>
+<input id="q" placeholder="example: machine learning AND NOT data science">
+<button id="go">Search</button>
+<br>
+<button class="ex">machine learning</button>
+<button class="ex">data science</button>
+<button class="ex">machine learning AND data science</button>
+<button class="ex">machine learning AND NOT data science</button>
+<div id="out"></div>
+
+<script>
+// the 10 documents (same text as the docs folder)
+var docs = {
+  d1: "machine learning",
+  d2: "machine learning improves data processing",
+  d3: "data science tools support analysis",
+  d4: "artificial intelligence powers smart systems",
+  d5: "machine learning machine models support data science and machine learning",
+  d6: "cloud computing supports data storage",
+  d7: "artificial intelligence uses machine learning models",
+  d8: "data science explores data analytics through research computing systems",
+  d9: "cloud computing cloud storage supports data systems",
+  d10: "machine learning models improve machine learning applications research data systems"
+};
+var N = 10;
+var names = [];
+for (var i = 1; i <= N; i++) {
+  names.push("d" + i);
+}
+
+// 1. positional index (same idea as part_a.py)
+var index = {};
+for (var n = 0; n < names.length; n++) {
+  var d = names[n];
+  var tokens = docs[d].toLowerCase().split(" ");
+  for (var p = 0; p < tokens.length; p++) {
+    var w = tokens[p];
+    if (index[w] == undefined) index[w] = {};
+    if (index[w][d] == undefined) index[w][d] = [];
+    index[w][d].push(p + 1);   // positions start from 1
+  }
+}
+var words = Object.keys(index).sort();
+
+// 2. tf, df, idf, tf-idf (same as part_b.py)
+var raw = {}, weighted = {}, tfidf = {}, df = {}, idf = {};
+for (var i = 0; i < words.length; i++) {
+  var w = words[i];
+  df[w] = Object.keys(index[w]).length;
+  idf[w] = Math.log10(N / df[w]);
+  raw[w] = {};
+  weighted[w] = {};
+  tfidf[w] = {};
+  for (var j = 0; j < names.length; j++) {
+    var d = names[j];
+    var tf = 0;
+    if (index[w][d] != undefined) tf = index[w][d].length;
+    raw[w][d] = tf;
+    if (tf > 0) weighted[w][d] = 1 + Math.log10(tf);
+    else weighted[w][d] = 0;
+    tfidf[w][d] = weighted[w][d] * idf[w];
+  }
+}
+
+// 3. document lengths
+var length = {};
+for (var j = 0; j < names.length; j++) {
+  var d = names[j];
+  var total = 0;
+  for (var i = 0; i < words.length; i++) {
+    total = total + tfidf[words[i]][d] * tfidf[words[i]][d];
+  }
+  length[d] = Math.sqrt(total);
+}
+
+// 4. normalized tf-idf
+var norm = {};
+for (var i = 0; i < words.length; i++) {
+  var w = words[i];
+  norm[w] = {};
+  for (var j = 0; j < names.length; j++) {
+    norm[w][names[j]] = tfidf[w][names[j]] / length[names[j]];
+  }
+}
+
+// ---------- showing the tables ----------
+function makeTable(table) {
+  var html = "<div class='wrap'><table><tr><th>term</th>";
+  for (var j = 0; j < names.length; j++) html += "<th>" + names[j] + "</th>";
+  html += "</tr>";
+  for (var i = 0; i < words.length; i++) {
+    html += "<tr><td>" + words[i] + "</td>";
+    for (var j = 0; j < names.length; j++) {
+      html += "<td>" + table[words[i]][names[j]].toFixed(4) + "</td>";
+    }
+    html += "</tr>";
+  }
+  return html + "</table></div>";
+}
+
+function indexTable() {
+  var html = "<div class='wrap'><table><tr><th>term</th><th>documents : positions</th></tr>";
+  for (var i = 0; i < words.length; i++) {
+    var parts = [];
+    for (var j = 0; j < names.length; j++) {
+      if (index[words[i]][names[j]] != undefined) {
+        parts.push(names[j] + ": " + index[words[i]][names[j]].join(", "));
+      }
+    }
+    html += "<tr><td>" + words[i] + "</td><td style='text-align:left'>" + parts.join("; ") + "</td></tr>";
+  }
+  return html + "</table></div>";
+}
+
+function dfTable() {
+  var html = "<div class='wrap'><table><tr><th>term</th><th>DF</th><th>IDF</th></tr>";
+  for (var i = 0; i < words.length; i++) {
+    html += "<tr><td>" + words[i] + "</td><td>" + df[words[i]] + "</td><td>" + idf[words[i]].toFixed(4) + "</td></tr>";
+  }
+  return html + "</table></div>";
+}
+
+function lengthTable() {
+  var html = "<div class='wrap'><table><tr><th>document</th><th>vector length</th></tr>";
+  for (var j = 0; j < names.length; j++) {
+    html += "<tr><td>" + names[j] + "</td><td>" + length[names[j]].toFixed(4) + "</td></tr>";
+  }
+  return html + "</table></div>";
+}
+
+// buttons for the tabs
+var tabNames = ["Positional index", "Raw TF", "Weighted TF", "DF / IDF", "TF-IDF", "Doc lengths", "Normalized"];
+
+function showTab(t) {
+  var html = "";
+  if (t == 0) html = indexTable();
+  if (t == 1) html = makeTable(raw);
+  if (t == 2) html = makeTable(weighted);
+  if (t == 3) html = dfTable();
+  if (t == 4) html = makeTable(tfidf);
+  if (t == 5) html = lengthTable();
+  if (t == 6) html = makeTable(norm);
+  document.getElementById("view").innerHTML = html;
+}
+
+for (var t = 0; t < tabNames.length; t++) {
+  var b = document.createElement("button");
+  b.textContent = tabNames[t];
+  b.onclick = (function (k) { return function () { showTab(k); }; })(t);
+  document.getElementById("tabs").appendChild(b);
+}
+showTab(0);
+
+// ---------- phrase search ----------
+// returns: document -> list of starting positions
+function phrase(text) {
+  var ws = text.trim().toLowerCase().split(" ");
+  var found = {};
+  for (var i = 0; i < ws.length; i++) {
+    if (index[ws[i]] == undefined) return found;   // word not in any doc
+  }
+  for (var j = 0; j < names.length; j++) {
+    var d = names[j];
+    if (index[ws[0]][d] == undefined) continue;
+    var starts = [];
+    for (var k = 0; k < index[ws[0]][d].length; k++) {
+      var p = index[ws[0]][d][k];
+      var ok = true;
+      // every next word must be at position p + 1, p + 2 ...
+      for (var m = 1; m < ws.length; m++) {
+        if (index[ws[m]][d] == undefined || index[ws[m]][d].indexOf(p + m) == -1) ok = false;
+      }
+      if (ok) starts.push(p);
+    }
+    if (starts.length > 0) found[d] = starts;
+  }
+  return found;
+}
+
+// rank the documents in docList for the query words
+function rank(queryWords, docList) {
+  var count = {};
+  for (var i = 0; i < queryWords.length; i++) {
+    var w = queryWords[i];
+    if (count[w] == undefined) count[w] = 0;
+    count[w] = count[w] + 1;
+  }
+  // query weight = (1 + log10 tf) * idf, then normalize
+  var q = {};
+  var qLen = 0;
+  for (var w in count) {
+    q[w] = (1 + Math.log10(count[w])) * idf[w];
+    qLen = qLen + q[w] * q[w];
+  }
+  qLen = Math.sqrt(qLen);
+  for (var w in q) q[w] = q[w] / qLen;
+
+  var scores = [];
+  for (var j = 0; j < docList.length; j++) {
+    var s = 0;
+    for (var w in q) s = s + q[w] * norm[w][docList[j]];
+    scores.push({ doc: docList[j], score: s });
+  }
+  scores.sort(function (a, b) { return b.score - a.score; });
+  return { q: q, qLen: qLen, scores: scores };
+}
+
+function showRank(title, queryWords, docList) {
+  var r = rank(queryWords, docList);
+  var html = "<div class='box'><b>" + title + "</b><br>query length = " + r.qLen.toFixed(6) + "<br>";
+  for (var w in r.q) html += "weight " + w + " = " + r.q[w].toFixed(4) + "<br>";
+  if (r.scores.length == 0) return html + "no matching documents</div>";
+  html += "<div class='wrap'><table><tr><th>rank</th><th>document</th><th>similarity</th></tr>";
+  var order = [];
+  for (var i = 0; i < r.scores.length; i++) {
+    html += "<tr><td>" + (i + 1) + "</td><td>" + r.scores[i].doc + "</td><td>" + r.scores[i].score.toFixed(4) + "</td></tr>";
+    order.push(r.scores[i].doc);
+  }
+  return html + "</table></div>Ranking: " + order.join(" > ") + "</div>";
+}
+
+function showPhrase(text, found) {
+  var len = text.trim().split(" ").length;
+  var html = "<div class='box'><b>Phrase: " + text + "</b>";
+  var docsFound = Object.keys(found);
+  if (docsFound.length == 0) return html + "<br>nothing found</div>";
+  html += "<div class='wrap'><table><tr><th>document</th><th>start positions</th><th>token ranges</th></tr>";
+  for (var i = 0; i < docsFound.length; i++) {
+    var starts = found[docsFound[i]];
+    var ranges = [];
+    for (var k = 0; k < starts.length; k++) ranges.push(starts[k] + "-" + (starts[k] + len - 1));
+    html += "<tr><td>" + docsFound[i] + "</td><td>" + starts.join(", ") + "</td><td>" + ranges.join(", ") + "</td></tr>";
+  }
+  return html + "</table></div></div>";
+}
+
+// ---------- the search button ----------
+function search() {
+  var q = document.getElementById("q").value.trim().toLowerCase();
+  var out = document.getElementById("out");
+  if (q == "") {
+    out.innerHTML = "<p>please type a query first</p>";
+    return;
+  }
+  var html = "";
+
+  if (q.indexOf(" and not ") != -1) {
+    var parts = q.split(" and not ");
+    var first = phrase(parts[0]);
+    var second = phrase(parts[1]);
+    var keep = [];
+    for (var d in first) {
+      if (second[d] == undefined) keep.push(d);
+    }
+    html = showPhrase(parts[0], first) + showPhrase(parts[1], second);
+    html += "<div class='box'>AND NOT (first phrase but not the second): <b>" + keep.join(", ") + "</b></div>";
+    html += showRank("AND NOT ranking", parts[0].split(" "), keep);
+  } else if (q.indexOf(" and ") != -1) {
+    var parts = q.split(" and ");
+    var first = phrase(parts[0]);
+    var second = phrase(parts[1]);
+    var both = [];
+    for (var d in first) {
+      if (second[d] != undefined) both.push(d);
+    }
+    html = showPhrase(parts[0], first) + showPhrase(parts[1], second);
+    html += "<div class='box'>AND (both phrases): <b>" + both.join(", ") + "</b></div>";
+    html += showRank("AND ranking", (parts[0] + " " + parts[1]).split(" "), both);
+  } else {
+    var found = phrase(q);
+    html = showPhrase(q, found) + showRank("Phrase ranking", q.split(" "), Object.keys(found));
+  }
+  out.innerHTML = html;
+}
+
+document.getElementById("go").onclick = search;
+var exampleButtons = document.getElementsByClassName("ex");
+for (var i = 0; i < exampleButtons.length; i++) {
+  exampleButtons[i].onclick = (function (btn) {
+    return function () {
+      document.getElementById("q").value = btn.textContent;
+      search();
+    };
+  })(exampleButtons[i]);
+}
+</script>
+</body>
+</html>
